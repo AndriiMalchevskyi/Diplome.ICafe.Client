@@ -1,0 +1,25 @@
+<div class="container-sm">
+  <div class="card bg-light">
+    <div *ngIf="!havePhoto; then Default else Custom"></div>
+    <ng-template #Default>
+      <img class="img-fluid" src="../../../assets/notFound.jpg" />
+    </ng-template>
+    <ng-template #Custom>
+      <!--<img class="img-fluid" src="{{product.Photo.Url}}" />-->
+    </ng-template>
+    
+    <div class="card-body">
+      <h4 class="card-title text mb-1">{{product.Title}}</h4>
+      <h5 class="card-text text-muted text">{{product.Category}}</h5>
+      <h5 class="card-text text-muted text">{{product.Price}}$</h5>
+      <p class="card-text">
+        {{ (product.Description.length > 50)? (product.Description | slice:0:50)+'..':(product.Description) }}
+      </p>
+      <div class="row">
+        <a class="col text-left" [routerLink]="['/product-detail', product.Id]"><input type="button" class="btn btn-primary" value="More"></a>
+        <a class="col text-right" ><input (click)="AddToCart(product.Id)" type="button" class="btn btn-primary" value="Buy"></a>
+      </div>
+    </div>
+  </div>
+  
+</div>
