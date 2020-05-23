@@ -15,7 +15,6 @@ export class MenuCardComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.product);
     // tslint:disable-next-line: comment-format
     //if (this.product.Photo.Url.length !== 0) {
     //  this.havePhoto = true;
@@ -23,6 +22,15 @@ export class MenuCardComponent implements OnInit {
   }
 
   AddToCart(event: any) {
-    console.log('add to cart ' + event);
+    let cart = JSON.parse(localStorage.getItem('cart')) as Array<Product>;
+    if (cart !== null) {
+      cart.push(this.product);
+    } else {
+      cart = new Array<Product>();
+      cart.push(this.product);
+    }
+    const cartJSON = JSON.stringify(cart);
+    localStorage.setItem('cart', cartJSON);
+    console.log(localStorage.getItem('cart'));
   }
 }

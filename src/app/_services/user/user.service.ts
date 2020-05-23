@@ -32,4 +32,9 @@ export class UserService {
     this.createAuthorizationHeader(this.headers);
     return this.http.get<User>(this.baseUrl + 'user/' + id,  {headers: this.headers});
   }
+
+  updateUser(user: User) {
+    this.createAuthorizationHeader(this.headers);
+    return this.http.put<User>(this.baseUrl + 'user', user, {headers: this.headers});
+  }
 }

@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <div class="row justify-content-center" *ngFor="let product of products">
+    <app-productcart [product]="product"></app-productcart>
+  </div>
+
+<div>
+  <h5>Sum: {{this.sum()}}</h5>
+</div>
+<div>
+  <input type="button" value="Create order">
+</div>
+</div>

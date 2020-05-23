@@ -22,7 +22,7 @@ export class User {
         this.age = json.age;
         this.created = json.created;
         this.lastActive = json.lastActive;
-        this.dateOfBirth = json.dateOfBirth;
+        this.dateOfBirth = new Date(json.dateOfBirth);
         this.Photo = json.Photo;
         this.initPosition(json.roles);
       }

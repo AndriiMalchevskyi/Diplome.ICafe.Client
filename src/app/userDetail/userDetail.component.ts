@@ -35,13 +35,19 @@ export class UserDetailComponent implements OnInit {
 
   canBeUpdated() {
     console.log(this.authService.DecodedToken());
-    let roleList = this.authService.decodedToken().role as Array<any>;
+    const roleList = this.authService.DecodedToken().role as Array<any>;
     return this.authService.DecodedToken().nameid === this.id ||
       roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
     roleList.indexOf('admin') !== -1;
   }
 
   Save() {
-
+    console.log('Save');
+    console.log(this.user);
+    this.userService.updateUser(this.user).subscribe(() => {
+      this.alertify.success('Updated');
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 }

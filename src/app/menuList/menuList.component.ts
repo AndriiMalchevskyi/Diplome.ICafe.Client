@@ -12,7 +12,7 @@ export class MenuListComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
   productTemp = <Product>{Id: 0, Title: 'Product',
   Description: 'Boy favourable day can introduced sentiments entreaties. Noisier carried of in warrant because.',
-  Price: 10, Category: 'type' };
+  Price: 10, Category: 'type', Count: 1};
   constructor() { }
 
   ngOnInit() {

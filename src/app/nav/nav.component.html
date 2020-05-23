@@ -25,6 +25,11 @@
 
     <div *ngIf="!loggedIn()" class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
+            <li *ngIf="!isEmptyCart()" class="nav-item">
+                <a class="nav-link" [routerLink]="['/cart']">
+                    Cart {{this.CountOfItemsInCart()}}
+                </a>
+            </li>
             <li class="nav-item">
                 <a [routerLink]="['/register']" class="nav-link">Register</a>
             </li>
@@ -36,9 +41,14 @@
 
     <div *ngIf="loggedIn()" class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
+            <li *ngIf="!isEmptyCart()" class="nav-item">
+                <a class="nav-link" [routerLink]="['/cart']">
+                    Cart {{this.CountOfItemsInCart()}}
+                </a>
+            </li>
             <li class="nav-item">
-                <a class="nav-link">
-                    Welcome {{authService.decodedToken?.unique_name | titlecase}}
+                <a class="nav-link" [routerLink]="['/user-detail', this.authService.DecodedToken()?.nameid]">
+                    Welcome {{this.authService.DecodedToken()?.unique_name | titlecase}}
                 </a>
             </li>
             <li class="nav-item">

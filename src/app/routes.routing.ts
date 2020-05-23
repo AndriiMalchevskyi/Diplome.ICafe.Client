@@ -8,6 +8,7 @@ import { PersonalListComponent } from './personalList/personalList.component';
 import { WaitersListComponent } from './waitersList/waitersList.component';
 import { AboutComponent } from './about/about.component';
 import { UserDetailComponent } from './userDetail/userDetail.component';
+import { CartComponent } from './Cart/Cart.component';
 
 
 
@@ -29,5 +30,6 @@ export const appRoutes: Routes = [
     {path: 'waiters', component: WaitersListComponent},
     {path: 'about', component: AboutComponent},
     {path: 'user-detail/:id', component: UserDetailComponent},
+    {path: 'cart', component: CartComponent},
     {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];

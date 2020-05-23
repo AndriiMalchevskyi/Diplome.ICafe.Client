@@ -6,5 +6,6 @@ export class Product {
     Description: string;
     Category: string;
     Price: number;
+    Count = 1;
 //Photo?: Photo;
 }

@@ -21,6 +21,8 @@ import { AboutComponent } from './about/about.component';
 import { MenuCardComponent } from './Cards/menuCard/menuCard.component';
 import { PersonalCardComponent } from './Cards/personalCard/personalCard.component';
 import { UserDetailComponent } from './userDetail/userDetail.component';
+import { CartComponent } from './Cart/Cart.component';
+import { ProductCartComponent } from './Cards/productCart/productCart.component';
 
 @NgModule({
    declarations: [
@@ -35,7 +37,9 @@ import { UserDetailComponent } from './userDetail/userDetail.component';
       AboutComponent,
       MenuCardComponent,
       PersonalCardComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      CartComponent,
+      ProductCartComponent
    ],
    imports: [
       RouterModule.forRoot(appRoutes),
