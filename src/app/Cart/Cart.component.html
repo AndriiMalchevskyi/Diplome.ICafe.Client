@@ -1,12 +1,39 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row justify-content-center" *ngFor="let product of products">
-    <app-productcart [product]="product"></app-productcart>
+    <app-productcart (onDeleted)="loadCart()" [product]="product"></app-productcart>
   </div>
 
-<div>
-  <h5>Sum: {{this.sum()}}</h5>
-</div>
-<div>
-  <input type="button" value="Create order">
-</div>
+  <div class="row justify-content-center">
+    <div class="col-sm-2 my-auto">
+      <h5>Sum: {{this.sum()}}</h5>
+    </div>
+    <div class="col-sm-2 my-auto">
+      <input class="btn btn-success" type="button" value="Create order">
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="card shopping-cart">
+           <div class="card-header bg-dark text-light text-right">
+               <a [routerLink]="['/menu']" class="btn btn-outline-info">Back to menu</a>
+           </div>
+
+           <div class="card-body" >
+            <div class="row p-3 justify-content-center" *ngFor="let product of products">
+              <app-productcart (onDeleted)="loadCart()" [product]="product"></app-productcart>
+            </div>
+
+            <div class="card-footer text-right">
+              <!-- <div class="col-md-3 col-sm-3 justify-content-center">
+                  <input type="text" class="form-control" placeholder="cupone code">
+              </div> -->
+              <span class="m-5">
+                Total price: <b>{{this.sum()}}$</b>
+              </span>
+              <span class="m-4">
+                <a href="" class="btn btn-success">Checkout</a>
+              </span>
+          </div>
+      </div>
 </div>

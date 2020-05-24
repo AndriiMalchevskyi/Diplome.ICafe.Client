@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../_models/Product';
 import { Photo } from '../_models/Photo';
+import { ProductService } from '../_services/product/product.service';
+import { AlertifyService } from '../_services/alertify/Alertify.service';
+import { AuthService } from '../_services/auth/AuthService.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,14 +13,41 @@ import { Photo } from '../_models/Photo';
 })
 export class MenuListComponent implements OnInit {
   // tslint:disable-next-line: max-line-length
-  productTemp = <Product>{Id: 0, Title: 'Product',
-  Description: 'Boy favourable day can introduced sentiments entreaties. Noisier carried of in warrant because.',
-  Price: 10, Category: 'type', Count: 1};
-  constructor() { }
+  products = new Array<Product>();
+  progresBarVisible = true;
+  // productTemp = <Product>{id: 0, title: 'Product',
+  // description: 'Boy favourable day can introduced sentiments entreaties. Noisier carried of in warrant because.',
+  // price: 10, category: 'type', count: 1};
+  constructor(private productService: ProductService, private alertify: AlertifyService, private authService: AuthService) { }
 
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
     //this.productTemp = <Product>{Title: 'Product', Description: 'Description', Price: 10, Category: 'type'};
+    this.loadProducts();
   }
 
+  loadProducts() {
+    console.log('loadProducts');
+    this.productService.getProducts('').subscribe((products: Product[]) => {
+      this.initProducts(products);
+      this.progresBarVisible = false;
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
+  initProducts(products: Product[]) {
+    products.forEach(elem => {
+      console.log(elem);
+      console.log(new Product(elem));
+      this.products.push(new Product(elem));
+    });
+  }
+
+  canBeCreated() {
+    console.log(this.authService.DecodedToken());
+    const roleList = this.authService.DecodedToken().role as Array<any>;
+    return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
+    roleList.indexOf('admin') !== -1;
+  }
 }

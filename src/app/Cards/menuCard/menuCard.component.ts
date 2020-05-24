@@ -23,14 +23,31 @@ export class MenuCardComponent implements OnInit {
 
   AddToCart(event: any) {
     let cart = JSON.parse(localStorage.getItem('cart')) as Array<Product>;
+    const index = this.indexOf(cart, this.product.id);
+
     if (cart !== null) {
-      cart.push(this.product);
+      if (index === -1) {
+        cart.push(this.product);
+      } else {
+        cart[index].count += 1;
+      }
     } else {
       cart = new Array<Product>();
       cart.push(this.product);
     }
+
     const cartJSON = JSON.stringify(cart);
     localStorage.setItem('cart', cartJSON);
     console.log(localStorage.getItem('cart'));
+  }
+
+  indexOf(array: Array<Product>, id: number) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id === id) {
+        return i;
+      }
+    }
+
+    return -1;
   }
 }

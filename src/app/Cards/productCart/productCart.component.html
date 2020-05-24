@@ -1,33 +1,70 @@
-<div class="container-sm m-3">
+<!-- <div class="container-sm m-3">
   <div class="row bg-light">
-    <div *ngIf="!havePhoto; then Default else Custom"></div>
+    <div *ngIf="!havePhoto; then Default else Custom" class="my-auto"></div>
     <ng-template #Default>
-      <img class="img-fluid col-sm-3" src="../../../assets/notFound.jpg" />
+      <img class="img-fluid col-sm-3 p-2" src="../../../assets/notFound.jpg" />
     </ng-template>
     <ng-template #Custom>
       <!--<img class="img-fluid" src="{{product.Photo.Url}}" />-->
-    </ng-template>
+    <!--</ng-template>
     
-    <div class="col-sm-1">
-      <h4 class="text-muted text">{{product.Title}}</h4>
+    <div class="col-sm-1 my-auto">
+      <h4 class="text-muted text ">{{product.title}}</h4>
     </div>
-    <div class="col-sm-1">
-      <h5 class="text-muted text">{{product.Category}}</h5>
-  </div>
-  <div class="col-sm-1">
-      <h5 class="text-muted text">{{product.Price}}$</h5>
+    <div class="col-sm-1 my-auto">
+      <h5 class="text-muted text">{{product.category}}</h5>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-1 my-auto">
+      <h5 class="text-muted text">{{product.price}}$</h5>
+    </div>
+    <div class="col-sm-3 my-auto">
       <p class="">
-        {{ (product.Description.length > 50)? (product.Description | slice:0:50)+'..':(product.Description) }}
+        {{ (product.description.length > 50)? (product.description | slice:0:150)+'..':(product.description) }}
       </p>
     </div>
-    <div class="col-sm-2">
-      <input class="text-muted text" (change)="changedCount($event)" min="1" max="100" type="number" [(ngModel)]="product.Count" value="1">
+    <div class="col-sm-1 my-auto ">
+      <input class="text-muted text" (change)="changedCount($event)" min="1" max="100" type="number" [(ngModel)]="product.count" value="1">
     </div>
-    <div class="col-sm-1">
-        <a class="text-left mb-2" [routerLink]="['/product-detail', product.Id]"><input type="button" class="btn btn-primary" value="More"></a>
-        <a class="text-left" ><input (click)="RemoveFromCart()" type="button" class="btn btn-danger" value="Remove"></a>
-      </div>
+    <div class="col-sm-1  p-1 my-auto">
+      <a class="" [routerLink]="['/product-detail', product.id]"><input type="button" class="btn btn-primary" value="More"></a>
+    </div>
+    <div class="col-sm-1 p-1 my-auto">
+      <input (click)="RemoveFromCart()" type="button" class="btn btn-danger" value="Remove">
     </div>
   </div>
+</div> -->
+
+
+<!-- PRODUCT -->
+<div class="row">
+
+  <div *ngIf="!havePhoto; then Default else Custom" class="col-12 col-sm-12 col-md-2 text-center"></div>
+  <ng-template #Default>
+    <img class="img-responsive" src="../../../assets/notFound.jpg" alt="prewiew" width="120" height="80">
+  </ng-template>
+  <ng-template #Custom>
+    <!--<img class="img-responsive" src="{{product.Photo.Url}}" alt="prewiew" width="120" height="80">-->
+  </ng-template>
+<!-- 
+  <div class="col-12 col-sm-12 col-md-2 text-center">
+          <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
+  </div> -->
+  <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+      <a [routerLink]="['/product-detail', product.id]"> <h4 class="product-name"><strong>{{product.title}}</strong></h4></a>
+      <h4>
+          <small>{{ (product.description.length > 150)? (product.description | slice:0:150)+'..':(product.description) }}</small>
+      </h4>
+  </div>
+  <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row my-auto">
+      <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+          <h6><strong>{{product.price}} <span class="text-muted">x</span></strong></h6>
+      </div>
+      <div class="col-4 col-sm-4 col-md-4">
+        <input type="number" step="1" max="99" min="1" (change)="changedCount($event)" [(ngModel)]="product.count">
+      </div>
+      <div class="col-2 col-sm-2 col-md-2 text-right my-auto">
+        <input (click)="RemoveFromCart()" type="button" class="btn btn-outline-danger btn-xs" value="Remove">
+      </div>
+  </div>
+</div>
+<hr>

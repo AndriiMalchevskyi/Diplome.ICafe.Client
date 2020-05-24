@@ -13,6 +13,7 @@ export class PersonalListComponent implements OnInit {
   userTemp = <User>{id: 1, userName: 'Username', name: 'Name',
   surname: 'Surname'};
   users: User[];
+  progresBarVisible = true;
   constructor(private alertify: AlertifyService, private userService: UserService) { }
 
   ngOnInit() {
@@ -24,6 +25,7 @@ export class PersonalListComponent implements OnInit {
     this.userService.getUsers().subscribe((users: User[]) => {
       this.users = users;
       console.log(this.users);
+      this.progresBarVisible = false;
     }, error => {
       this.alertify.error(error);
     });

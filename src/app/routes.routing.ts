@@ -9,6 +9,7 @@ import { WaitersListComponent } from './waitersList/waitersList.component';
 import { AboutComponent } from './about/about.component';
 import { UserDetailComponent } from './userDetail/userDetail.component';
 import { CartComponent } from './Cart/Cart.component';
+import { ProductDetailComponent } from './productDetail/productDetail.component';
 
 
 
@@ -30,6 +31,8 @@ export const appRoutes: Routes = [
     {path: 'waiters', component: WaitersListComponent},
     {path: 'about', component: AboutComponent},
     {path: 'user-detail/:id', component: UserDetailComponent},
+    {path: 'product-detail/:id', component: ProductDetailComponent},
+    {path: 'product-detail', component: ProductDetailComponent},
     {path: 'cart', component: CartComponent},
     {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];

@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   baseUrl =  environment.apiUrl + 'user/';
-  jwtHelper = new JwtHelperService();
-  decodedToken: any;
   headers: HttpHeaders;
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json;',  });
