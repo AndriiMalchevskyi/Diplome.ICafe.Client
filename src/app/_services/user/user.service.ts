@@ -33,6 +33,8 @@ export class UserService {
 
   updateUser(user: User) {
     this.createAuthorizationHeader(this.headers);
+    console.log('UPDATE user');
+    console.log(user);
     return this.http.put<User>(this.baseUrl + 'user', user, {headers: this.headers});
   }
 }

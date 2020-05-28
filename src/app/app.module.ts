@@ -24,6 +24,8 @@ import { UserDetailComponent } from './userDetail/userDetail.component';
 import { CartComponent } from './Cart/Cart.component';
 import { ProductCartComponent } from './Cards/productCart/productCart.component';
 import { ProductDetailComponent } from './productDetail/productDetail.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersComponent } from './Orders/Orders.component';
 
 @NgModule({
    declarations: [
@@ -41,7 +43,9 @@ import { ProductDetailComponent } from './productDetail/productDetail.component'
       UserDetailComponent,
       CartComponent,
       ProductCartComponent,
-      ProductDetailComponent
+      ProductDetailComponent,
+      CheckoutComponent,
+      OrdersComponent
    ],
    imports: [
       RouterModule.forRoot(appRoutes),

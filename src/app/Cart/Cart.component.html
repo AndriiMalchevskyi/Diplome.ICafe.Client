@@ -1,18 +1,3 @@
-<!-- <div class="container-fluid">
-  <div class="row justify-content-center" *ngFor="let product of products">
-    <app-productcart (onDeleted)="loadCart()" [product]="product"></app-productcart>
-  </div>
-
-  <div class="row justify-content-center">
-    <div class="col-sm-2 my-auto">
-      <h5>Sum: {{this.sum()}}</h5>
-    </div>
-    <div class="col-sm-2 my-auto">
-      <input class="btn btn-success" type="button" value="Create order">
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
   <div class="card shopping-cart">
            <div class="card-header bg-dark text-light text-right">
@@ -32,7 +17,7 @@
                 Total price: <b>{{this.sum()}}$</b>
               </span>
               <span class="m-4">
-                <a href="" class="btn btn-success">Checkout</a>
+                <a [routerLink]="['/checkout']" class="btn btn-success">Checkout</a>
               </span>
           </div>
       </div>

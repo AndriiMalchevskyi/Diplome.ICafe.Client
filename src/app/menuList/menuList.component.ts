@@ -27,7 +27,6 @@ export class MenuListComponent implements OnInit {
   }
 
   loadProducts() {
-    console.log('loadProducts');
     this.productService.getProducts('').subscribe((products: Product[]) => {
       this.initProducts(products);
       this.progresBarVisible = false;
@@ -38,14 +37,11 @@ export class MenuListComponent implements OnInit {
 
   initProducts(products: Product[]) {
     products.forEach(elem => {
-      console.log(elem);
-      console.log(new Product(elem));
       this.products.push(new Product(elem));
     });
   }
 
   canBeCreated() {
-    console.log(this.authService.DecodedToken());
     const roleList = this.authService.DecodedToken().role as Array<any>;
     return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
     roleList.indexOf('admin') !== -1;

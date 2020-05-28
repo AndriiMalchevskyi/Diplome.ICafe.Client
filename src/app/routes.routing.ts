@@ -10,6 +10,8 @@ import { AboutComponent } from './about/about.component';
 import { UserDetailComponent } from './userDetail/userDetail.component';
 import { CartComponent } from './Cart/Cart.component';
 import { ProductDetailComponent } from './productDetail/productDetail.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersComponent } from './Orders/Orders.component';
 
 
 
@@ -33,6 +35,8 @@ export const appRoutes: Routes = [
     {path: 'user-detail/:id', component: UserDetailComponent},
     {path: 'product-detail/:id', component: ProductDetailComponent},
     {path: 'product-detail', component: ProductDetailComponent},
+    {path: 'checkout', component: CheckoutComponent},
     {path: 'cart', component: CartComponent},
+    {path: 'orders', component: OrdersComponent},
     {path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];

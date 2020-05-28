@@ -18,28 +18,29 @@ confirm(message: string, okCallback: () => any) {
    }
 
    success(message: string) {
-      if (message.length > 0)
+      if (message.length != undefined && message.length > 0)
         alertify.success(message);
       else
       alertify.success("Success");
    }
 
    error(message: string) {
-    if (message.length > 0)
+     console.log(message);
+    if (message.length != undefined && message.length > 0)
       alertify.error(message);
     else
       alertify.error("Error");
   }
 
   warning(message: string) {
-    if (message.length > 0)
+    if (message.length != undefined && message.length > 0)
       alertify.warning(message);
     else
       alertify.warning("Warning");
   }
 
   message(message: string) {
-    if (message.length > 0)
+    if (message.length != undefined && message.length > 0)
       alertify.message(message);
     else
       alertify.message("Message");

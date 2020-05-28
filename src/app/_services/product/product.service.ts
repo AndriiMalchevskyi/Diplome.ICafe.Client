@@ -27,6 +27,7 @@ export class ProductService {
   getProducts(parameters: any) {
     this.createAuthorizationHeader(this.headers);
     const params = new HttpParams().set('param', parameters);
+    console.log(params);
     return this.http.get(this.baseUrl, {headers: this.headers, params: params});
   }
 

@@ -23,6 +23,10 @@ export class MenuCardComponent implements OnInit {
 
   AddToCart(event: any) {
     let cart = JSON.parse(localStorage.getItem('cart')) as Array<Product>;
+    if (cart == null) {
+      cart = new Array<Product>();
+    }
+
     const index = this.indexOf(cart, this.product.id);
 
     if (cart !== null) {

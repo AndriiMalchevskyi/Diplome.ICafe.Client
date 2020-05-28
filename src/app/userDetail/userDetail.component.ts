@@ -27,6 +27,7 @@ export class UserDetailComponent implements OnInit {
   loadUser(id: number) {
     this.userService.getUser(id).subscribe((user: User) => {
       this.user = new User(user);
+      this.user = user
       console.log(this.user);
     }, error => {
       this.alertify.error(error);

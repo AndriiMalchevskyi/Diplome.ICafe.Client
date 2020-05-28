@@ -32,6 +32,12 @@ export class NavComponent implements OnInit {
 
   CountOfItemsInCart(): number {
     const cart = JSON.parse(localStorage.getItem('cart')) as Array<Product>;
-    return cart.length;
+    return cart !== null ? cart.length : 0;
+  }
+
+  IsPersonal() {
+    const roleList = this.authService.DecodedToken().role as Array<any>;
+    return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
+    roleList.indexOf('admin') !== -1 || roleList.indexOf('waiter') !== -1 || roleList.indexOf('cook') !== -1;
   }
 }
