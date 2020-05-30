@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/_models/Product';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -15,10 +16,9 @@ export class MenuCardComponent implements OnInit {
    }
 
   ngOnInit() {
-    // tslint:disable-next-line: comment-format
-    //if (this.product.Photo.Url.length !== 0) {
-    //  this.havePhoto = true;
-    //}
+    if (!isNullOrUndefined(this.product.photoUrl)) {
+     this.havePhoto = true;
+    }
   }
 
   AddToCart(event: any) {

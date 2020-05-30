@@ -24,7 +24,6 @@ export class PersonalListComponent implements OnInit {
   loadPersonalList() {
     this.userService.getUsers().subscribe((users: User[]) => {
       this.users = users;
-      console.log(this.users);
       this.progresBarVisible = false;
     }, error => {
       this.alertify.error(error);

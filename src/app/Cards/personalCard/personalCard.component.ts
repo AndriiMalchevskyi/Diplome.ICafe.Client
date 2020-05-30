@@ -13,6 +13,9 @@ export class PersonalCardComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User(this.user);
+    if (this.user.photoUrl.length > 0) {
+      this.havePhoto = true;
+    }
   }
 
   isWaiter() {

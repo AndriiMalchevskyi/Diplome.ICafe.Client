@@ -11,7 +11,7 @@ export class User {
     dateOfBirth: Date;
     created: Date;
     lastActive: Date;
-    Photo?: Photo;
+    photoUrl?: string;
 
     constructor(json:any) {
         this.id = json.id;
@@ -23,7 +23,7 @@ export class User {
         this.created = json.created;
         this.lastActive = json.lastActive;
         this.dateOfBirth = new Date(json.dateOfBirth);
-        this.Photo = json.Photo;
+        this.photoUrl = json.photoUrl;
         this.initPosition(json.roles);
       }
 

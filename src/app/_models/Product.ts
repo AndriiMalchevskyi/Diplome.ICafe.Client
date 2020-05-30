@@ -8,7 +8,8 @@ export class Product {
     category: string;
     price: number;
     count = 1;
-//Photo?: Photo;
+    photoUrl?: string;
+    
 constructor(json?: any) {
     this.id = json.id;
     this.title = json.title;
@@ -16,6 +17,7 @@ constructor(json?: any) {
     this.category = json.category;
     this.price = json.price;
     this.count = 1;
+    this.photoUrl = json.photoUrl;
   }
 
 }

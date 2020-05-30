@@ -6,10 +6,16 @@
 <ng-template #MyUserPage>
   <div *ngIf="!havePhoto; then Default else Custom"></div>
   <ng-template #Default>
-    <img class="img-thumbnail col-sm-6" src="../../../assets/defaultUser.png" />
+    <div class=" col-sm-6">
+      <img class="img-thumbnail" src="../../../assets/defaultUser.png"/>
+      <input class="form-control-file" type="file" ng2FileSelect [uploader]="uploader" multiple  />
+    </div>
   </ng-template>
   <ng-template #Custom>
-    <!--<img class="img-fluid" src="{{product.Photo.Url}}" />-->
+    <div class=" col-sm-6">
+      <img class="img-thumbnail" src="{{user.photoUrl}}"/>
+      <input class="form-control-file" type="file" ng2FileSelect [uploader]="uploader" multiple  />
+    </div>
   </ng-template>
   
   <div class="col-sm-6">

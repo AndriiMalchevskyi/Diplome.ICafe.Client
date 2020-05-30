@@ -26,6 +26,7 @@ import { ProductCartComponent } from './Cards/productCart/productCart.component'
 import { ProductDetailComponent } from './productDetail/productDetail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OrdersComponent } from './Orders/Orders.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
    declarations: [
@@ -52,7 +53,8 @@ import { OrdersComponent } from './Orders/Orders.component';
       BrowserModule,
       FormsModule,
       ReactiveFormsModule,
-      HttpClientModule
+      HttpClientModule,
+      FileUploadModule
    ],
    providers: [
       AuthService,

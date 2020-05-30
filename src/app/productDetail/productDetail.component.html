@@ -4,12 +4,18 @@
   </div>
   
 <ng-template #CanUpdatePage>
-  <div *ngIf="!havePhoto; then Default else Custom"></div>
+  <div *ngIf="!havePhoto || isCreatedForm; then Default else Custom"></div>
   <ng-template #Default>
-    <img class="img-thumbnail col-sm-5" src="../../../assets/notFound.jpg" />
+    <div class=" col-sm-5">
+      <img class="img-thumbnail" src="../../../assets/notFound.jpg"/>
+      <input class="form-control-file" type="file" ng2FileSelect [uploader]="uploader" multiple  />
+    </div>
   </ng-template>
   <ng-template #Custom>
-    <!--<img class="img-fluid" src="{{product.Photo.Url}}" />-->
+    <div class=" col-sm-5">
+      <img class="img-thumbnail" src="{{product.photoUrl}}"/>
+      <input class="form-control-file" type="file" ng2FileSelect [uploader]="uploader" multiple  />
+    </div>
   </ng-template>
   
   <div class="col-sm-7">

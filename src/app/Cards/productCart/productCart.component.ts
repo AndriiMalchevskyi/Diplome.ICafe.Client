@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/_models/Product';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-productcart',
@@ -14,6 +15,9 @@ export class ProductCartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!isNullOrUndefined(this.product.photoUrl)) {
+      this.havePhoto = true;
+     }
   }
 
   RemoveFromCart(event: any) {
