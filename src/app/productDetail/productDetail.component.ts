@@ -55,9 +55,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   canBeUpdated() {
-    const roleList = this.authService.DecodedToken().role as Array<any>;
+    const token = this.authService.DecodedToken();
+    if (token !== null) {
+    const roleList = token.role as Array<any>;
     return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
     roleList.indexOf('admin') !== -1;
+  }
+    return false;
   }
 
   Save() {
@@ -83,6 +87,7 @@ export class ProductDetailComponent implements OnInit {
 
     if (cart !== null) {
       if (index === -1) {
+        this.product.count = 1;
         cart.push(this.product);
       } else {
         cart[index].count += 1;

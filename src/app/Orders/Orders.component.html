@@ -27,9 +27,9 @@
   </div>
 </div>
 
-<div class="row card-block justify-content-center align-items-center bg-light mb-3" *ngFor="let order of orders">
+<div class="row justify-content-center align-items-center bg-light p-3 m-5" *ngFor="let order of orders">
   <div class="col-sm-1">
-    <a [routerLink]="['/user-detail', order.owner.id]"><h4>{{order.owner.userName}}</h4></a>
+    <a [routerLink]="['/user-detail', (order.owner !==null)?order.owner.id:0]"><h4>{{order.owner?.userName}}</h4></a>
   </div>
   <div class="col-sm-2">
     <div *ngFor="let product of order.productOrders">

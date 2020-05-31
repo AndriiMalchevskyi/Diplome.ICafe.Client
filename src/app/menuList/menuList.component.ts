@@ -23,11 +23,11 @@ export class MenuListComponent implements OnInit {
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
     //this.productTemp = <Product>{Title: 'Product', Description: 'Description', Price: 10, Category: 'type'};
-    this.loadProducts();
+    this.loadProducts('Soup');
   }
 
-  loadProducts() {
-    this.productService.getProducts('').subscribe((products: Product[]) => {
+  loadProducts(category: string) {
+    this.productService.getProducts(category).subscribe((products: Product[]) => {
       this.initProducts(products);
       this.progresBarVisible = false;
     }, error => {
@@ -36,14 +36,20 @@ export class MenuListComponent implements OnInit {
   }
 
   initProducts(products: Product[]) {
+    this.products = new Array<Product>();
     products.forEach(elem => {
       this.products.push(new Product(elem));
     });
   }
 
   canBeCreated() {
-    const roleList = this.authService.DecodedToken().role as Array<any>;
-    return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
-    roleList.indexOf('admin') !== -1;
+    const token = this.authService.DecodedToken();
+    if (token !== null) {
+      const roleList = token.role as Array<any>;
+      return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
+      roleList.indexOf('admin') !== -1;
+    }
+
+    return false;
   }
 }

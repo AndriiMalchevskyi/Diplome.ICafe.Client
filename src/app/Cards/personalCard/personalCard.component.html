@@ -9,13 +9,13 @@
     </ng-template>
     
     <div class="card-body">
-      <h4 class="card-text text-muted text">{{user.name}} {{user.surname}}</h4>
+      <h5 class="card-text text-muted text">{{user.name}} {{user.surname}}</h5>
     
       <a *ngFor="let position of user.positions" class="card-text text-muted text">{{position}} </a>
       
       <div class="row">
-        <a class="col text-left" [routerLink]="['/user-detail', user.id]"><input type="button" class="btn btn-primary" value="More"></a>
-        <a *ngIf="isWaiter()" class="col text-right" ><input (click)="Call(user.id)" type="button" class="btn btn-primary" value="Call"></a>
+        <a class="col text-left" [routerLink]="['/user-detail', user.id]"><input type="button" class="btn btn-info" value="More"></a>
+        <a *ngIf="isWaiter()" class="col text-right" ><input (click)="Call(user.id)" type="button" class="btn btn-warning" value="Call"></a>
       </div>
     </div>
   </div>

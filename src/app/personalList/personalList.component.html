@@ -2,11 +2,47 @@
   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" 
     aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
 </div>
-
+<!-- 
 <div>
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 pb-2" *ngFor="let user of users">
       <app-personalcard [user]="user"></app-personalcard>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-sm-2">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-product-list" (click)="loadPersonalList('waiter')" data-toggle="list" href="#list-product" role="tab" aria-controls="product">
+              Waiters
+          </a>
+          <a class="list-group-item list-group-item-action" id="list-product-list" (click)="loadPersonalList('cook')" data-toggle="list" href="#list-product" role="tab" aria-controls="product">
+              Cooks
+          </a>
+          <a class="list-group-item list-group-item-action" id="list-product-list" (click)="loadPersonalList('admin')" data-toggle="list" href="#list-product" role="tab" aria-controls="product">
+            Admins
+          </a>
+          <a *ngIf="isAdmin()" class="list-group-item list-group-item-action" id="list-product-list" (click)="loadPersonalList('sysadmins')" data-toggle="list" href="#list-product" role="tab" aria-controls="product">
+            Sysadmins
+          </a>
+          <a *ngIf="isAdmin()" class="list-group-item list-group-item-action" id="list-product-list" (click)="loadPersonalList('root')" data-toggle="list" href="#list-product" role="tab" aria-controls="product">
+            Root
+          </a>
+          <a *ngIf="isAdmin()" class="list-group-item list-group-item-action" id="list-product-list" (click)="loadPersonalList('')" data-toggle="list" href="#list-product" role="tab" aria-controls="product">
+            All
+          </a>
+        </div>
+    </div>
+    <div class="col-sm-10 tab-content" id="nav-tabContent">
+        <div class="tab-pane show active" id="list-product" role="tabpanel" aria-labelledby="list-product-list">
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 pb-2" *ngFor="let user of users">
+              <app-personalcard [user]="user"></app-personalcard>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 </div>

@@ -16,7 +16,9 @@ export class CartService {
 
   createAuthorizationHeader(headers: HttpHeaders) {
     const token = localStorage.getItem('token');
-    this.headers = headers.set('Authorization', token);
+    if (token !== null) {
+      this.headers = headers.set('Authorization', token);
+    }
   }
 
   getOrder(id: number) {

@@ -20,6 +20,7 @@ export class UserDetailComponent implements OnInit {
   uploader: FileUploader;
   baseUrl =  environment.apiUrl;
   photos: Photo[] = [];
+  positions: Array<any>;
   constructor(private route: ActivatedRoute, private alertify: AlertifyService, private userService: UserService,
     private authService: AuthService) { }
 
@@ -34,6 +35,7 @@ export class UserDetailComponent implements OnInit {
   loadUser(id: number) {
     this.userService.getUser(id).subscribe((user: User) => {
       this.user = new User(user);
+      this.positions = this.user.positions;
       this.user = user;
       if (this.user.photoUrl.length > 0) {
         this.havePhoto = true;
@@ -44,10 +46,32 @@ export class UserDetailComponent implements OnInit {
   }
 
   canBeUpdated() {
-    const roleList = this.authService.DecodedToken().role as Array<any>;
+    const token = this.authService.DecodedToken();
+    if (token !== null) {
+    const roleList = token.role as Array<any>;
     return this.authService.DecodedToken().nameid === this.id ||
       roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
-    roleList.indexOf('admin') !== -1;
+      roleList.indexOf('admin') !== -1;
+    }
+    return false;
+  }
+
+  isAdmin() {
+    const token = this.authService.DecodedToken();
+    if (token !== null) {
+    const roleList = token.role as Array<any>;
+    return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
+      roleList.indexOf('admin') !== -1;
+    }
+
+    return false;
+  }
+
+  addRole(role: string){
+    this.userService.addRole(this.id, role).subscribe(() => {
+      this.loadUser(this.id);
+      this.alertify.success('Added ' + role + 'to user');
+    });
   }
 
   Save() {
@@ -59,7 +83,7 @@ export class UserDetailComponent implements OnInit {
       this.alertify.error(error);
     });
   }
-
+  
   initializeUploader() {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'photo/user/' + this.id,

@@ -16,7 +16,9 @@ export class ProductService {
 
   createAuthorizationHeader(headers: HttpHeaders) {
     const token = localStorage.getItem('token');
-    this.headers = headers.set('Authorization', token);
+    if (token !== null) {
+      this.headers = headers.set('Authorization', token);
+    }
   }
 
   getProduct(id: number) {
@@ -26,8 +28,7 @@ export class ProductService {
 
   getProducts(parameters: any) {
     this.createAuthorizationHeader(this.headers);
-    const params = new HttpParams().set('param', parameters);
-    console.log(params);
+    const params = new HttpParams().set('type', parameters);
     return this.http.get(this.baseUrl, {headers: this.headers, params: params});
   }
 

@@ -16,8 +16,8 @@
         {{ (product.description.length > 35)? (product.description | slice:0:35)+'..':(product.description) }}
       </p>
       <div class="row">
-        <a class="col text-left" [routerLink]="['/product-detail', product.id]"><input type="button" class="btn btn-primary" value="More"></a>
-        <a class="col text-right" ><input (click)="AddToCart(product.id)" type="button" class="btn btn-primary" value="Buy"></a>
+        <a class="col text-left" [routerLink]="['/product-detail', product.id]"><input type="button" class="btn btn-info" value="More"></a>
+        <a class="col text-right" ><input (click)="AddToCart(product.id)" type="button" class="btn btn-success" value="Buy"></a>
       </div>
     </div>
   </div>

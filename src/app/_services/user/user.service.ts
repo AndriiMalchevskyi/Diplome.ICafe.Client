@@ -17,12 +17,15 @@ export class UserService {
 
   createAuthorizationHeader(headers: HttpHeaders) {
     const token = localStorage.getItem('token');
-    this.headers = headers.set('Authorization', token);
+    if (token !== null) {
+      this.headers = headers.set('Authorization', token);
+    }
   }
 
   getUsers(type = ''): Observable<User[]> {
     this.createAuthorizationHeader(this.headers);
     const params = new HttpParams().set('type', type);
+    console.log(type);
     return this.http.get<User[]>(this.baseUrl + 'users', {headers: this.headers, params: params});
   }
 
@@ -33,8 +36,11 @@ export class UserService {
 
   updateUser(user: User) {
     this.createAuthorizationHeader(this.headers);
-    console.log('UPDATE user');
-    console.log(user);
     return this.http.put<User>(this.baseUrl + 'user', user, {headers: this.headers});
+  }
+
+  addRole(userId: number, role: string) {
+    this.createAuthorizationHeader(this.headers);
+    return this.http.put<User>(this.baseUrl + 'addrole', {id: userId, role}, {headers: this.headers});
   }
 }

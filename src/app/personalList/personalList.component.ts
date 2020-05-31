@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/user';
 import { AlertifyService } from '../_services/alertify/Alertify.service';
 import { UserService } from '../_services/user/user.service';
+import { AuthService } from '../_services/auth/AuthService.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -14,15 +15,26 @@ export class PersonalListComponent implements OnInit {
   surname: 'Surname'};
   users: User[];
   progresBarVisible = true;
-  constructor(private alertify: AlertifyService, private userService: UserService) { }
+  constructor(private alertify: AlertifyService, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.loadPersonalList();
+    this.loadPersonalList('waiter');
   }
 
+  isAdmin() {
+    const token = this.authService.DecodedToken();
+    if (token !== null) {
+      const roleList = token.role as Array<any>;
+      return roleList.indexOf('root') !== -1 || roleList.indexOf('sysadmin') !== -1 ||
+      roleList.indexOf('admin') !== -1;
+    }
 
-  loadPersonalList() {
-    this.userService.getUsers().subscribe((users: User[]) => {
+    return false;
+  }
+
+  loadPersonalList(role: string) {
+    console.log('loadPersonalList ' + role);
+    this.userService.getUsers(role).subscribe((users: User[]) => {
       this.users = users;
       this.progresBarVisible = false;
     }, error => {

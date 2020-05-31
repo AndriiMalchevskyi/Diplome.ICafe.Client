@@ -1,5 +1,5 @@
 <div class="container-fluid d-flex justify-content-center align-items-center mt-3">
-    <form #registerForm="ngForm" class="form-group col-sm-6 pt-3 border border-success" (ngSubmit)="register()">
+    <form #registerForm="ngForm" class="form-group col-sm-6 pt-3 border border-success bg-light" (ngSubmit)="register()">
       <div class="form-group">
         <input class="form-control mr-sm-2" type="email"  name="email" 
           placeholder="Email" [(ngModel)]="user.email" required>
